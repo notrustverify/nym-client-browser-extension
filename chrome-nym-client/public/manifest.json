@@ -1,0 +1,53 @@
+{
+  "name": "nym-client",
+  "description": "Run a nym-client in your browser.",
+  "version": "0.1",
+  "manifest_version": 3,
+  "action": {
+      "default_title": "Connect",
+      "default_icon": {             
+        "16": "nym-client-icon.png",   
+        "24": "nym-client-icon.png",   
+        "32": "nym-client-icon.png"    
+      }
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "activeTab",
+    "scripting",
+    "webRequest",
+    "declarativeNetRequest",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "*://*.nym/*"
+],
+"content_scripts": [
+  {
+    "matches": ["*://*.nym/*","*://*.com/*"],
+    "js": ["./static/js/content.js"],
+    "all_frames": true,
+    "match_about_blank": true,
+    "run_at": "document_end",
+    "match_origin_as_fallback": true
+  }
+],
+"declarative_net_request" : {
+  "rule_resources" : [  {
+    "id" : "ruleset_1",
+    "enabled": false,
+    "path": "rules.json"
+  }]},
+  "background": {
+    "service_worker": "./static/js/background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "icons": {
+      "16": "logo192.png",
+      "48": "logo192.png",
+      "128": "logo192.png"
+  }
+}
