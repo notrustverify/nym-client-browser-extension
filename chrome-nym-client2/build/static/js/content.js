@@ -1,0 +1,2 @@
+!function(){"use strict";console.log("dfgdfjfgj"),alert("dsfgjghjf"),document.write("Hello World!"),chrome.webNavigation.onBeforeNavigate.addListener((function(e){console.log(e.url.split(".").pop().split("/")[0]),"nym"===e.url.split(".").pop().split("/")[0]&&chrome.tabs.query({active:!0,currentWindow:!0},(function(e){chrome.webNavigation.getFrame({tabId:e[0].id,frameId:0},(function(e){e.errorOccurred&&(document.body.textContent="ERROR")}))}))}))}();
+//# sourceMappingURL=content.js.map
